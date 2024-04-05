@@ -60,8 +60,7 @@ function myReduce (data, callback, acc) {
 myReduce({one: 1, two: 2, three: 3, four: 4}, callback, 10)
     
 
-//---------------------------------------------------------
-function myFind (data, find) {
+function myFind (data, callback) {
     let data2
     if (Array.isArray(data) === true) {
         data2 = data
@@ -71,19 +70,16 @@ function myFind (data, find) {
 
     let targetItem
     for(let i = 0; i < data2.length; i++) {
-        if (data2[i] === find) {
-            targetItem = find
-            break
+        if (callback(data2[i])) {
+            return targetItem = data2[i]
         } else {
             targetItem = undefined
         }
     }
-    console.log(targetItem)
     return targetItem
 }
 
 myFind([-1, 4, 0, 1, 3, 2, 3, 4, 5, 6], 4)
-//---------------------------------------------------------
 
 
 function myFilter (data) {
